@@ -7,7 +7,7 @@ from robot import ROBOT
 class INDIVIDUAL:
     def __init__(self, i):
         self.ID = i
-        self.genome = np.random.random(4) * 2 - 1 
+        self.genome = np.random.rand(8,4) *2 -1
         self.fitness = 0
     
     def Start_Evaluation(self, pb):
@@ -25,11 +25,17 @@ class INDIVIDUAL:
         del self.sim
 
     def Mutate(self):
-        geneToMutate = random.randint(0,3)
+        rowToMutate = random.randint(0,len(self.genome) - 1)
+        colToMutate = random.randint(0, len(self.genome[0]) -1)
         #new random value close to parent's random value
         #Standard deviation is |self.genome| to make the mutate take 
         # larger steps the larger the genome is
-        self.genome[geneToMutate] = random.gauss(self.genome[geneToMutate], math.fabs(self.genome[geneToMutate]))
+        self.genome[rowToMutate][colToMutate] = random.gauss(self.genome[rowToMutate][colToMutate], math.fabs(self.genome[rowToMutate][colToMutate]))
+
+        if (self.genome[rowToMutate][colToMutate] > 1):
+            self.genome[rowToMutate][colToMutate] = 1
+        if (self.genome[rowToMutate][colToMutate] < -1):
+            self.genome[rowToMutate][colToMutate] = -1
         
     def Print(self):
         print('[' + str(self.ID) + " " + str(self.fitness) + ']', end='')

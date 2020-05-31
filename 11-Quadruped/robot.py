@@ -92,10 +92,7 @@ class ROBOT:
         self.MN = {}
 
         for j in self.J:
-            self.MN[j] = sim.send_motor_neuron(joint_id=self.J[j])
-
-
-
+            self.MN[j] = sim.send_motor_neuron(joint_id=self.J[j], tau=0.3)
 
          #creates sensor neurons, each one connected to one cylinder
         #self.SN0 = sim.send_sensor_neuron( sensor_id=self.T0 )
@@ -109,6 +106,6 @@ class ROBOT:
 
 
     def send_synapses(self, sim, wts):
-        for sn in self.SN:
-            firstMN = min(self.MN, key=self.MN.get) #gets first motor neuron
-            sim.send_synapse(source_neuron_id=self.SN[sn], target_neuron_id=self.MN[firstMN], weight=random.random()*2 -1 )
+        for j in self.SN:
+            for i in self.MN:
+                sim.send_synapse(source_neuron_id=self.SN[j], target_neuron_id=self.MN[i], weight=wts[i][j])

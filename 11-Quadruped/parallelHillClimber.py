@@ -8,19 +8,20 @@ from robot import ROBOT
 from individual import INDIVIDUAL
 from population import POPULATION
 
-parents = POPULATION(1)
-parents.Evaluate(False)
-exit()
+parents = POPULATION(10)
+parents.Evaluate(True)
 print('Parents: ', end='')
 parents.Print()
 
-for g in range(0,100):
+for g in range(0,200):
     children = copy.deepcopy(parents)
     children.Mutate()
-    children.Evaluate()
+    children.Evaluate(True)
     parents.ReplaceWith(children)
     print(g, end=' ')
     parents.Print()
+
+parents.Evaluate(False)
 
 
 #parent = INDIVIDUAL()
