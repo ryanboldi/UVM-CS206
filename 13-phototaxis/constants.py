@@ -3,7 +3,7 @@ R = L/5 # radius of ''
 
 evalTime = 500
 
-popSize = 1
-numGens = 1
+popSize = 10
+numGens = 200
 
 numEnvs = 4

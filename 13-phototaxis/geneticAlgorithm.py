@@ -20,7 +20,8 @@ envs = ENVIRONMENTS()
 
 parents = POPULATION(c.popSize)
 parents.Initialize()
-parents.Evaluate(envs, pp=False, pb=False)
+parents.Evaluate(envs, pp=False, pb=True)
+print('Gen 0: ', end='')
 parents.Print()
 
 
@@ -30,27 +31,25 @@ parents.Print()
 #    f.close()
 #    parents.p[0] = best
 
-#print('Gen 0: ', end='')
+for g in range(1,c.numGens):
+     children = POPULATION(c.popSize)
+     children.Fill_From(parents)
+     children.Evaluate(envs, pp=False, pb=True)
+     print('Gen '+str(g)+': ', end='')
+     children.Print()
+     parents = children
 
 
-#for g in range(1,c.numGens):
-   # #children = POPULATION(c.popSize)
-   # children.Fill_From(parents)
-   # children.Evaluate(True)
-   # print('Gen '+str(g)+': ', end='')
- #   children.Print()
-  #  parents = children
-
-
-#best = copy.deepcopy(parents.p[0])
+best = copy.deepcopy(parents.p[0])
 
 #save parent to file
-#f=open('robot.p','wb')
-#pickle.dump(best, f)
-#f.close()
+f=open('robot.p','wb')
+pickle.dump(best, f)
+f.close()
 
 #play best creature
-#parents.p[0].Start_Evaluation(False)
+for e in envs.envs:
+  parents.p[0].Start_Evaluation(envs.envs[e], pp=True, pb = False)
 
 
 #    children = copy.deepcopy(parents)

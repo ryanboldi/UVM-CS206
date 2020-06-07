@@ -22,22 +22,22 @@ class ENVIRONMENT:
     def Place_Light_Source_To_The_Front(self):
         self.y = 30 * c.L
         self.x = 0
-        self.z = 0
+        self.z = 0.5*c.L
 
     def Place_Light_Source_To_The_Right(self):
         self.x = 30 * c.L
         self.y = 0
-        self.z = 0
+        self.z = 0.5*c.L
     
     def Place_Light_Source_To_The_Back(self):
         self.y = - 30*c.L
         self.x = 0
-        self.z = 0
+        self.z = 0.5*c.L
     
     def Place_Light_Source_To_The_Left(self):
         self.x = -30 * c.L
         self.y = 0
-        self.z = 0
+        self.z = 0.5*c.L
         
     
     def Send_To(self, sim):

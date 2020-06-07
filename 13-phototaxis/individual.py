@@ -40,4 +40,4 @@ class INDIVIDUAL:
             self.genome[rowToMutate][colToMutate] = -1
         
     def Print(self):
-        print('[' + str(self.ID) + " " + str(self.fitness) + ']', end='')
+        print('[' + str(self.ID) + " " + str(round(self.fitness,3)) + ']', end='')

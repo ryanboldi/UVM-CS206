@@ -29,11 +29,11 @@ class POPULATION:
                 self.p[i].Start_Evaluation(envs.envs[e], pp, pb)
             for i in self.p:
                 self.p[i].Compute_Fitness()
-            self.Print()
+            #self.Print()
 
         for i in self.p:
             self.p[i].fitness /= 4
-
+            
 
     def Mutate(self):
         for i in self.p:
