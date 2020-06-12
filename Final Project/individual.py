@@ -11,7 +11,7 @@ class INDIVIDUAL:
         self.fitness = 0
     
     def Start_Evaluation(self, pb):
-        self.sim = pyrosim.Simulator( play_paused=False, eval_time=500, play_blind=pb)
+        self.sim = pyrosim.Simulator( play_paused=True, eval_time=500, play_blind=pb)
         self.robot = ROBOT(self.sim, self.genome)
         self.sim.start()
 

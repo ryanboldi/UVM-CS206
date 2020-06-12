@@ -26,13 +26,20 @@ class ROBOT:
         #self.redObject = sim.send_cylinder(x=0, y=0.5, z=1.1, length=1.0, r=1, g=0, b=0, r1=0,r2=1,r3=0)
         self.O0 = sim.send_box(x=0, y=0, z=c.L + c.R, length=c.L, width=c.L, height=2 * c.R, r=0.5, g=0.5, b=0.5)
         self.O1 = sim.send_cylinder(x=0 ,y=c.L, z=c.L + c.R, length= c.L, radius = c.R, r1=0, r2=1, r3=0, r=1, g=0, b=0)
-        self.O2 = sim.send_cylinder(x=c.L, y=0, z=c.L+c.R, length=c.L, radius = c.R, r1=1, r2=0, r3=0, r=0, g=1, b=0)
+        self.O2 = sim.send_cylinder(x=c.L, y=0, z=c.L + c.R, length=c.L, radius = c.R, r1=1, r2=0, r3=0, r=0, g=1, b=0)
         self.O3 = sim.send_cylinder(x=0, y=-c.L, z = c.L + c.R, length=c.L, radius=c.R, r1=0, r2=-1, r3=0, r=0, g=0, b=1)
         self.O4 = sim.send_cylinder(x=-c.L, y=0, z = c.L + c.R, length=c.L, radius=c.R, r1=-1, r2=0, r3=0, r=1, g=0, b=1)
         self.O5 = sim.send_cylinder(x=0, y=1.5*c.L, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=1, g=0, b=0)
         self.O6 = sim.send_cylinder(x=1.5*c.L, y=0, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=0, g=1, b=0)
         self.O7 = sim.send_cylinder(x=0, y=-1.5*c.L, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=0, g=0, b=1)
         self.O8 = sim.send_cylinder(x=-1.5*c.L, y=0, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=1, g=0, b=1)
+        
+        #ARMS 
+        self.O9 = sim.send_cylinder(x = (c.L/4), y = 0, z = (c.L * (1.5) + 3 * (c.R)), length=c.L*1.5, radius=c.R, r=1, g=1, b=0)
+        self.O10 = sim.send_cylinder(x = -(c.L/4), y = 0, z = (c.L * (1.5) + 3 * (c.R)), length=c.L*1.5, radius=c.R, r=1, g=1, b=0)
+
+        self.O11 = sim.send_cylinder(x = (c.L/4), y = c.L * 0.75, z = (c.L * (2.5) + 2 * (c.R)), length=c.L*1.5, radius=c.R, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1)
+        self.O12 = sim.send_cylinder(x = -(c.L/4), y = c.L * 0.75, z = (c.L * (2.5) + 2 * (c.R)), length=c.L*1.5, radius=c.R, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1)
 
         self.O = {} #dict of all objects    
         self.O[0] = self.O0
@@ -44,6 +51,11 @@ class ROBOT:
         self.O[6] = self.O6
         self.O[7] = self.O7
         self.O[8] = self.O8
+        self.O[9] = self.O9
+        self.O[10] = self.O10
+        self.O[11] = self.O11
+        self.O[12] = self.O12
+        
 
 
     def send_joints(self,sim):
@@ -57,6 +69,14 @@ class ROBOT:
         self.J6 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O4,x=-c.L/2, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
         self.J6 = sim.send_hinge_joint(first_body_id=self.O4, second_body_id=self.O8,x=-1.5*c.L, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
 
+        #shoulder joints
+        self.J7 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O9, x=(c.L/4), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
+        self.J8 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O10, x=-(c.L/4), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
+
+        #elbow joints
+        self.J7 = sim.send_hinge_joint(first_body_id=self.O9, second_body_id=self.O11, x = (c.L/4), y = 0, z = (c.L * (2) + 4 * (c.R)), n1= 1, n2 = 0, n3 = 0)
+        self.J8 = sim.send_hinge_joint(first_body_id=self.O10, second_body_id=self.O12, x = -(c.L/4), y = 0, z = (c.L * (2) + 4 * (c.R)), n1= 1, n2 = 0, n3 = 0)
+
         self.J = {}
         self.J[0] = self.J0
         self.J[1] = self.J1
@@ -65,6 +85,8 @@ class ROBOT:
         self.J[4] = self.J4
         self.J[5] = self.J5
         self.J[6] = self.J6
+
+        
 
 
     def send_sensors(self, sim):
