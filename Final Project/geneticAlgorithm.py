@@ -10,8 +10,8 @@ from population import POPULATION
 
 from multiprocessing import Lock
 
-Load = False
-popSize = 10
+Load = True
+popSize = 1
 
 
 parents = POPULATION(popSize)
@@ -27,7 +27,7 @@ parents.Evaluate(True)
 print('Gen 0: ', end='')
 parents.Print()
 
-for g in range(1,10):
+for g in range(1,1):
     children = POPULATION(popSize)
     children.Fill_From(parents)
     children.Evaluate(True)
