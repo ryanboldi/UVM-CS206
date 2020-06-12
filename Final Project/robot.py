@@ -41,6 +41,9 @@ class ROBOT:
         self.O11 = sim.send_cylinder(x = (c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R) + c.A), length=c.A, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1)
         self.O12 = sim.send_cylinder(x = -(c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R) + c.A), length=c.A, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1)
 
+        self.O13 = sim.send_cylinder(x = (c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R)),length=c.aR, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=1, g=0, b=0)
+        self.O14 = sim.send_cylinder(x = -(c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R)),length=c.aR, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=1, g=0, b=0)
+
         self.O = {} #dict of all objects    
         self.O[0] = self.O0
         self.O[1] = self.O1
@@ -55,6 +58,8 @@ class ROBOT:
         self.O[10] = self.O10
         self.O[11] = self.O11
         self.O[12] = self.O12
+        self.O[13] = self.O13
+        self.O[14] = self.O14
         
 
 
@@ -70,12 +75,18 @@ class ROBOT:
         self.J7 = sim.send_hinge_joint(first_body_id=self.O4, second_body_id=self.O8,x=-1.5*c.L, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
 
         #shoulder joints
-        self.J8 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O9, x=(c.L/3), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
-        self.J9 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O10, x=-(c.L/3), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
+        self.J8 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O13, x=(c.L/3), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 1, n2 = 0, n3 = 0, hi=math.pi /2, lo=-math.pi/2)
+        self.J9 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O14, x=-(c.L/3), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 1, n2 = 0, n3 = 0, hi=math.pi /2, lo=-math.pi/2)
 
+        #shoulder joints in other direction
+        self.J12 = sim.send_hinge_joint(first_body_id=self.O13, second_body_id=self.O9, x=(c.L/3), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0, hi=math.pi /2, lo=-math.pi/2)
+        self.J13 = sim.send_hinge_joint(first_body_id=self.O14, second_body_id=self.O10, x=-(c.L/3), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0, hi=math.pi /2, lo=-math.pi/2)
+      
         #elbow joints
-        self.J10 = sim.send_hinge_joint(first_body_id=self.O9, second_body_id=self.O11, x = (c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A), n1= 1, n2 = 0, n3 = 0)
-        self.J11 = sim.send_hinge_joint(first_body_id=self.O10, second_body_id=self.O12, x = -(c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A), n1= 1, n2 = 0, n3 = 0)
+        self.J10 = sim.send_hinge_joint(first_body_id=self.O9, second_body_id=self.O11, x = (c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A), n1= 1, n2 = 0, n3 = 0, hi=math.pi /2, lo=-math.pi/2)
+        self.J11 = sim.send_hinge_joint(first_body_id=self.O10, second_body_id=self.O12, x = -(c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A), n1= 1, n2 = 0, n3 = 0, hi=math.pi /2, lo=-math.pi/2)
+
+
 
         self.J = {}
         self.J[0] = self.J0
@@ -90,6 +101,8 @@ class ROBOT:
         self.J[9] = self.J9
         self.J[10] = self.J10
         self.J[11] = self.J11
+        self.J[12] = self.J12
+        self.J[13] = self.J13
 
 
 
