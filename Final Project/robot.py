@@ -67,15 +67,15 @@ class ROBOT:
         self.J4 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O3,x=0, y=-c.L/2, z=c.L + c.R,n1=1, n2=0, n3=0, hi=math.pi /2, lo=-math.pi/2)
         self.J5 = sim.send_hinge_joint(first_body_id=self.O3, second_body_id=self.O7,x=0, y=-1.5*c.L, z=c.L + c.R,n1=1, n2=0, n3=0, hi=math.pi /2, lo=-math.pi/2)
         self.J6 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O4,x=-c.L/2, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
-        self.J6 = sim.send_hinge_joint(first_body_id=self.O4, second_body_id=self.O8,x=-1.5*c.L, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
+        self.J7 = sim.send_hinge_joint(first_body_id=self.O4, second_body_id=self.O8,x=-1.5*c.L, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
 
         #shoulder joints
-        self.J7 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O9, x=(c.L/4), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
-        self.J8 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O10, x=-(c.L/4), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
+        self.J8 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O9, x=(c.L/4), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
+        self.J9 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O10, x=-(c.L/4), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
 
         #elbow joints
-        self.J7 = sim.send_hinge_joint(first_body_id=self.O9, second_body_id=self.O11, x = (c.L/4), y = 0, z = (c.L * (2) + 4 * (c.R)), n1= 1, n2 = 0, n3 = 0)
-        self.J8 = sim.send_hinge_joint(first_body_id=self.O10, second_body_id=self.O12, x = -(c.L/4), y = 0, z = (c.L * (2) + 4 * (c.R)), n1= 1, n2 = 0, n3 = 0)
+        self.J10 = sim.send_hinge_joint(first_body_id=self.O9, second_body_id=self.O11, x = (c.L/4), y = 0, z = (c.L * (2) + 4 * (c.R)), n1= 1, n2 = 0, n3 = 0)
+        self.J11 = sim.send_hinge_joint(first_body_id=self.O10, second_body_id=self.O12, x = -(c.L/4), y = 0, z = (c.L * (2) + 4 * (c.R)), n1= 1, n2 = 0, n3 = 0)
 
         self.J = {}
         self.J[0] = self.J0
@@ -85,8 +85,12 @@ class ROBOT:
         self.J[4] = self.J4
         self.J[5] = self.J5
         self.J[6] = self.J6
+        self.J[7] = self.J7
+        self.J[8] = self.J8
+        self.J[9] = self.J9
+        self.J[10] = self.J10
+        self.J[11] = self.J11
 
-        
 
 
     def send_sensors(self, sim):
@@ -95,11 +99,16 @@ class ROBOT:
         self.T2 = sim.send_touch_sensor(body_id = self.O7)
         self.T3 = sim.send_touch_sensor(body_id = self.O8)
 
+        self.T4 = sim.send_touch_sensor(body_id = self.O11)
+        self.T5 = sim.send_touch_sensor(body_id= self.O12)
+
         self.S = {}
         self.S[0] = self.T0
         self.S[1] = self.T1
         self.S[2] = self.T2
         self.S[3] = self.T3
+        self.S[4] = self.T4 
+        self.S[5] = self.T5
 
 
         #Only used for fitness computation   

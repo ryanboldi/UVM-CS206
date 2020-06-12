@@ -7,7 +7,7 @@ from robot import ROBOT
 class INDIVIDUAL:
     def __init__(self, i):
         self.ID = i
-        self.genome = np.random.rand(8,4) *2 -1
+        self.genome = np.random.rand(12,6) *2 -1
         self.fitness = 0
     
     def Start_Evaluation(self, pb):
