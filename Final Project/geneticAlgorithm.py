@@ -11,7 +11,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 1
+popSize = 10
 
 
 parents = POPULATION(popSize)

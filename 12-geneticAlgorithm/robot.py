@@ -55,7 +55,7 @@ class ROBOT:
         self.J4 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O3,x=0, y=-c.L/2, z=c.L + c.R,n1=1, n2=0, n3=0, hi=math.pi /2, lo=-math.pi/2)
         self.J5 = sim.send_hinge_joint(first_body_id=self.O3, second_body_id=self.O7,x=0, y=-1.5*c.L, z=c.L + c.R,n1=1, n2=0, n3=0, hi=math.pi /2, lo=-math.pi/2)
         self.J6 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O4,x=-c.L/2, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
-        self.J6 = sim.send_hinge_joint(first_body_id=self.O4, second_body_id=self.O8,x=-1.5*c.L, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
+        self.J7 = sim.send_hinge_joint(first_body_id=self.O4, second_body_id=self.O8,x=-1.5*c.L, y=0, z=c.L + c.R,n1=0, n2=-1, n3=0, hi=math.pi /2, lo=-math.pi/2)
 
         self.J = {}
         self.J[0] = self.J0
@@ -65,6 +65,7 @@ class ROBOT:
         self.J[4] = self.J4
         self.J[5] = self.J5
         self.J[6] = self.J6
+        self.J[7] = self.J7
 
 
     def send_sensors(self, sim):
