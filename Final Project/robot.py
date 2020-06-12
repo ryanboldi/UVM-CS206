@@ -74,8 +74,8 @@ class ROBOT:
         self.J9 = sim.send_hinge_joint(first_body_id=self.O0, second_body_id=self.O10, x=-(c.L/3), y = 0, z = (c.L * (1) + 2 * (c.R)), n1= 0, n2 = 1, n3 = 0)
 
         #elbow joints
-        self.J10 = sim.send_hinge_joint(first_body_id=self.O9, second_body_id=self.O11, x = (c.L/3), y = 0, z = (c.L * (2) + 3.5 * (c.R)), n1= 1, n2 = 0, n3 = 0)
-        self.J11 = sim.send_hinge_joint(first_body_id=self.O10, second_body_id=self.O12, x = -(c.L/3), y = 0, z = (c.L * (2) + 3.5 * (c.R)), n1= 1, n2 = 0, n3 = 0)
+        self.J10 = sim.send_hinge_joint(first_body_id=self.O9, second_body_id=self.O11, x = (c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A), n1= 1, n2 = 0, n3 = 0)
+        self.J11 = sim.send_hinge_joint(first_body_id=self.O10, second_body_id=self.O12, x = -(c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A), n1= 1, n2 = 0, n3 = 0)
 
         self.J = {}
         self.J[0] = self.J0
