@@ -27,7 +27,7 @@ parents.Evaluate(True)
 print('Gen 0: ', end='')
 parents.Print()
 
-for g in range(1,1):
+for g in range(1,10):
     children = POPULATION(popSize)
     children.Fill_From(parents)
     children.Evaluate(True)
