@@ -1,6 +1,7 @@
 import constants as c
 import math
 import random
+from tower import TOWER
 
 
 class ROBOT:
@@ -11,38 +12,36 @@ class ROBOT:
         self.send_neurons(sim)
         self.send_synapses(sim, wts)
 
-
         # delete these so they're not copied with copy.deepcopy()
         del self.O
         del self.J
         del self.S
         del self.SN
         del self.MN
-        
 
     def send_objects(self, sim):
         #create new cylinder and capture its ID in a variable
         #self.whiteObject = sim.send_cylinder(x=0, y=0, z=0.6,length=1.0, radius=0.1)
         #self.redObject = sim.send_cylinder(x=0, y=0.5, z=1.1, length=1.0, r=1, g=0, b=0, r1=0,r2=1,r3=0)
-        self.O0 = sim.send_box(x=0, y=0, z=c.L + c.R, length=c.L, width=c.L, height=2 * c.R, r=0.5, g=0.5, b=0.5)
-        self.O1 = sim.send_cylinder(x=0 ,y=c.L, z=c.L + c.R, length= c.L, radius = c.R, r1=0, r2=1, r3=0, r=1, g=0, b=0)
-        self.O2 = sim.send_cylinder(x=c.L, y=0, z=c.L + c.R, length=c.L, radius = c.R, r1=1, r2=0, r3=0, r=0, g=1, b=0)
-        self.O3 = sim.send_cylinder(x=0, y=-c.L, z = c.L + c.R, length=c.L, radius=c.R, r1=0, r2=-1, r3=0, r=0, g=0, b=1)
-        self.O4 = sim.send_cylinder(x=-c.L, y=0, z = c.L + c.R, length=c.L, radius=c.R, r1=-1, r2=0, r3=0, r=1, g=0, b=1)
-        self.O5 = sim.send_cylinder(x=0, y=1.5*c.L, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=1, g=0, b=0)
-        self.O6 = sim.send_cylinder(x=1.5*c.L, y=0, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=0, g=1, b=0)
-        self.O7 = sim.send_cylinder(x=0, y=-1.5*c.L, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=0, g=0, b=1)
-        self.O8 = sim.send_cylinder(x=-1.5*c.L, y=0, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=1, g=0, b=1)
+        self.O0 = sim.send_box(x=0, y=0, z=c.L + c.R, length=c.L, width=c.L, height=2 * c.R, r=0.5, g=0.5, b=0.5, collision_group="robot")
+        self.O1 = sim.send_cylinder(x=0 ,y=c.L, z=c.L + c.R, length= c.L, radius = c.R, r1=0, r2=1, r3=0, r=1, g=0, b=0, collision_group="robot")
+        self.O2 = sim.send_cylinder(x=c.L, y=0, z=c.L + c.R, length=c.L, radius = c.R, r1=1, r2=0, r3=0, r=0, g=1, b=0, collision_group="robot")
+        self.O3 = sim.send_cylinder(x=0, y=-c.L, z = c.L + c.R, length=c.L, radius=c.R, r1=0, r2=-1, r3=0, r=0, g=0, b=1, collision_group="robot")
+        self.O4 = sim.send_cylinder(x=-c.L, y=0, z = c.L + c.R, length=c.L, radius=c.R, r1=-1, r2=0, r3=0, r=1, g=0, b=1, collision_group="robot")
+        self.O5 = sim.send_cylinder(x=0, y=1.5*c.L, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=1, g=0, b=0, collision_group="robot")
+        self.O6 = sim.send_cylinder(x=1.5*c.L, y=0, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=0, g=1, b=0, collision_group="robot")
+        self.O7 = sim.send_cylinder(x=0, y=-1.5*c.L, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=0, g=0, b=1, collision_group="robot")
+        self.O8 = sim.send_cylinder(x=-1.5*c.L, y=0, z = (c.L/2) + c.R, length=c.L, radius=c.R, r1=0, r2=0, r3=1, r=1, g=0, b=1, collision_group="robot")
         
         #ARMS 
-        self.O9 = sim.send_cylinder(x = (c.L/3), y = 0, z = (c.L  + 2 * (c.R) + c.A/2), length=c.A, radius=c.aR, r=1, g=1, b=0)
-        self.O10 = sim.send_cylinder(x = -(c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A/2), length=c.A, radius=c.aR, r=1, g=1, b=0)
+        self.O9 = sim.send_cylinder(x = (c.L/3), y = 0, z = (c.L  + 2 * (c.R) + c.A/2), length=c.A, radius=c.aR, r=1, g=1, b=0, collision_group="robot")
+        self.O10 = sim.send_cylinder(x = -(c.L/3), y = 0, z = (c.L + 2 * (c.R) + c.A/2), length=c.A, radius=c.aR, r=1, g=1, b=0, collision_group="robot")
 
-        self.O11 = sim.send_cylinder(x = (c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R) + c.A), length=c.A, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1)
-        self.O12 = sim.send_cylinder(x = -(c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R) + c.A), length=c.A, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1)
+        self.O11 = sim.send_cylinder(x = (c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R) + c.A), length=c.A, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1, collision_group="robot")
+        self.O12 = sim.send_cylinder(x = -(c.L/3), y = c.A/2, z = (c.L * (1) + 2 * (c.R) + c.A), length=c.A, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=0, g=1, b=1, collision_group="robot")
 
-        self.O13 = sim.send_cylinder(x = c.L/3, y = 0, z = c.L  + c.R,length=0, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=1, g=0, b=0)
-        self.O14 = sim.send_cylinder(x = -c.L/3, y = 0, z = c.L + c.R,length=0, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=1, g=0, b=0)
+        self.O13 = sim.send_cylinder(x = c.L/3, y = 0, z = c.L  + c.R,length=0, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=1, g=0, b=0, collision_group="robot")
+        self.O14 = sim.send_cylinder(x = -c.L/3, y = 0, z = c.L + c.R,length=0, radius=c.aR, r1= 0, r2 =1, r3 = 0, r=1, g=0, b=0, collision_group="robot")
 
         self.O = {} #dict of all objects    
         self.O[0] = self.O0
