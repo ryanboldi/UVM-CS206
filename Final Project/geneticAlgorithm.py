@@ -13,7 +13,6 @@ from multiprocessing import Lock
 Load = False
 popSize = 10
 
-
 parents = POPULATION(popSize)
 parents.Initialize()
 
@@ -27,7 +26,7 @@ parents.Evaluate(True)
 print('Gen 0: ', end='')
 parents.Print()
 
-for g in range(1,10):
+for g in range(1,1):
     children = POPULATION(popSize)
     children.Fill_From(parents)
     children.Evaluate(True)
@@ -45,6 +44,7 @@ f.close()
 
 #play best creature
 parents.p[0].Start_Evaluation(False)
+parents.p[0].Compute_Fitness()
 
 
 #    children = copy.deepcopy(parents)
