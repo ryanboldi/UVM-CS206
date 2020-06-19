@@ -20,9 +20,9 @@ class POPULATION:
                 self.p[i].Print()
         print()
         
-    def Evaluate(self, pb):
+    def Evaluate(self, pb, tower_y):
         for i in self.p:
-            self.p[i].Start_Evaluation(pb)
+            self.p[i].Start_Evaluation(pb, tower_y)
         for i in self.p:
             self.p[i].Compute_Fitness()
 

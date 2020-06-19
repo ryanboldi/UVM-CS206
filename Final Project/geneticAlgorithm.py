@@ -4,6 +4,7 @@ import random
 import pickle
 import copy
 
+import constants as c
 from robot import ROBOT
 from individual import INDIVIDUAL
 from population import POPULATION
@@ -11,7 +12,9 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 10
+popSize = 1
+
+t = c.Min_dist
 
 parents = POPULATION(popSize)
 parents.Initialize()
@@ -22,17 +25,24 @@ if (Load):
     f.close()
     parents.p[0] = best
 
-parents.Evaluate(True)
+parents.Evaluate(False, t)
 print('Gen 0: ', end='')
 parents.Print()
 
+count = 0
+
 for g in range(1,1):
+    if (count == c.inc_time):
+        count = 0
+        t += c.gen_incremement
     children = POPULATION(popSize)
     children.Fill_From(parents)
-    children.Evaluate(True)
+    children.Evaluate(False, t)
     print('Gen '+str(g)+': ', end='')
     children.Print()
     parents = children
+
+    count+=1
 
 
 best = copy.deepcopy(parents.p[0])
@@ -43,7 +53,7 @@ pickle.dump(best, f)
 f.close()
 
 #play best creature
-parents.p[0].Start_Evaluation(False)
+parents.p[0].Start_Evaluation(False, t)
 parents.p[0].Compute_Fitness()
 
 
