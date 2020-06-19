@@ -12,7 +12,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 100
+popSize = 12
 
 t = c.Min_dist
 
@@ -31,7 +31,7 @@ parents.Print()
 
 #count = 0
 
-for g in range(1,5):
+for g in range(1,50):
     #if (count == c.inc_time):
      #   count = 0
       #  if (t+c.gen_incremement <= c.Max_dist):
@@ -43,13 +43,14 @@ for g in range(1,5):
 
     if (children.p[0].fitness == 20):
         if (t+c.gen_incremement <= c.Max_dist):
+            print("TOWER MOVED")
             t += c.gen_incremement
 
     print('Gen '+str(g)+': ', end='')
     children.Print()
     parents = children
 
-    count+=1
+    #scount+=1
 
 
 best = copy.deepcopy(parents.p[0])

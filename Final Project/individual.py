@@ -14,7 +14,7 @@ class INDIVIDUAL:
     
     def Start_Evaluation(self, pb, tower_y):
         self.pb = pb
-        self.sim = pyrosim.Simulator( play_paused=True, eval_time=1000, play_blind=pb)
+        self.sim = pyrosim.Simulator( play_paused=True, eval_time=c.eval_time, play_blind=pb)
         self.robot = ROBOT(self.sim, self.genome)
         self.tower = TOWER(self.sim, tower_y)
         self.sim.assign_collision("tower", "tower")
