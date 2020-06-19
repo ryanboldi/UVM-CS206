@@ -6,5 +6,5 @@ TL = 0.3 #height of tower
 TW = 0.1 # width of tower
 Min_dist = 0.5 # min distance of the tower
 Max_dist = 10 #max distance of the tower
-inc_time = 10 # gens per incremement
-gen_incremement = 0.1 # how much we incrememnt each gen
+inc_time = 1 # gens per incremement
+gen_incremement = 0.005 # how much we incrememnt each inc_time gens

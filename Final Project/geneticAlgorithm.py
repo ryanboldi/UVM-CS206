@@ -12,7 +12,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 1
+popSize = 100
 
 t = c.Min_dist
 
@@ -25,19 +25,26 @@ if (Load):
     f.close()
     parents.p[0] = best
 
-parents.Evaluate(False, t)
+parents.Evaluate(True, t)
 print('Gen 0: ', end='')
 parents.Print()
 
-count = 0
+#count = 0
 
-for g in range(1,1):
-    if (count == c.inc_time):
-        count = 0
-        t += c.gen_incremement
+for g in range(1,5):
+    #if (count == c.inc_time):
+     #   count = 0
+      #  if (t+c.gen_incremement <= c.Max_dist):
+       #     t += c.gen_incremement
+
     children = POPULATION(popSize)
     children.Fill_From(parents)
-    children.Evaluate(False, t)
+    children.Evaluate(True, t)
+
+    if (children.p[0].fitness == 20):
+        if (t+c.gen_incremement <= c.Max_dist):
+            t += c.gen_incremement
+
     print('Gen '+str(g)+': ', end='')
     children.Print()
     parents = children
