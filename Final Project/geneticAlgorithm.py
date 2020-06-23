@@ -12,7 +12,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 12
+popSize = 75
 
 t = c.Min_dist
 
@@ -20,18 +20,21 @@ parents = POPULATION(popSize)
 parents.Initialize()
 
 if (Load):
-    f = open('robot.p','rb')
-    best = pickle.load(f)
+    f = open('parents1.p','rb')
+    parents  = pickle.load(f)
     f.close()
-    parents.p[0] = best
+    #parents.p[0] = best
 
 parents.Evaluate(True, t)
 print('Gen 0: ', end='')
 parents.Print()
 
+
 #count = 0
 
-for g in range(1,50):
+for g in range(1,c.totGens):
+    if (g == c.gens):
+        t = c.Max_dist
     #if (count == c.inc_time):
      #   count = 0
       #  if (t+c.gen_incremement <= c.Max_dist):
@@ -52,12 +55,11 @@ for g in range(1,50):
 
     #scount+=1
 
-
 best = copy.deepcopy(parents.p[0])
 
 #save parent to file
-f=open('robot.p','wb')
-pickle.dump(best, f)
+f=open('parents2.p','wb')
+pickle.dump(parents, f)
 f.close()
 
 #play best creature
