@@ -12,7 +12,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 75
+popSize = 300
 
 t = c.Min_dist
 
@@ -58,7 +58,7 @@ for g in range(1,c.totGens):
 best = copy.deepcopy(parents.p[0])
 
 #save parent to file
-f=open('parents2.p','wb')
+f=open('parents3.p','wb')
 pickle.dump(parents, f)
 f.close()
 
