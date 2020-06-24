@@ -33,7 +33,7 @@ class INDIVIDUAL:
         #print(fallData)
         #if tower z is smaller than start posititon
         #if (not(self.pb)):
-            #print(fallData)
+        #print(fallData)
             #print(c.TL + (c.TW/2))
         
         if (fallData[-1] < (0.9 * (c.TL + (c.TW/2)))):

@@ -12,7 +12,9 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 300
+popSize = 50
+
+avgFitnesses = []
 
 t = c.Min_dist
 
@@ -48,9 +50,13 @@ for g in range(1,c.totGens):
         if (t+c.gen_incremement <= c.Max_dist):
             print("TOWER MOVED")
             t += c.gen_incremement
+        else:
+            t= c.Max_dist
 
     print('Gen '+str(g)+': ', end='')
     children.Print()
+    #print('tower distance:' + str(t))
+    avgFitnesses.append(children.get_avg_fitness())
     parents = children
 
     #scount+=1
@@ -58,8 +64,14 @@ for g in range(1,c.totGens):
 best = copy.deepcopy(parents.p[0])
 
 #save parent to file
-f=open('parents3.p','wb')
-pickle.dump(parents, f)
+f=open('0-2K-50best.p','wb')#0 pretrain, 6K on max dist, 100 pop best creature
+pickle.dump(parents.p[0], f)
+f.close()
+
+
+#save avg fitness of every gen to file
+f=open('0-2K-50fitness.p','wb')#0 pretrain, 6K on max dist, 100 pop
+pickle.dump(avgFitnesses, f)
 f.close()
 
 #play best creature

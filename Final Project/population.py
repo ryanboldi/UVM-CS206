@@ -73,3 +73,10 @@ class POPULATION:
             return self.p[p1]
         else:
             return self.p[p2]
+
+    def get_avg_fitness(self):
+        tot = 0
+        for i in self.p:
+            tot += self.p[i].fitness
+        
+        return (tot/len(self.p))
