@@ -2,7 +2,7 @@ from individual import INDIVIDUAL
 import pickle
 import constants as c
 
-f = open('parents1.p','rb')
+f = open('0-2K-50best.p','rb')
 parents = pickle.load(f)
 f.close()
 
