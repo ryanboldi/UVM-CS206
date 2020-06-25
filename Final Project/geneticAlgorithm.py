@@ -12,7 +12,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 50
+popSize = 10
 
 avgFitnesses = []
 
@@ -35,7 +35,7 @@ parents.Print()
 #count = 0
 
 for g in range(1,c.totGens):
-    if (g == c.gens):
+    if (g >= c.gens):
         t = c.Max_dist
     #if (count == c.inc_time):
      #   count = 0
@@ -55,7 +55,7 @@ for g in range(1,c.totGens):
 
     print('Gen '+str(g)+': ', end='')
     children.Print()
-    #print('tower distance:' + str(t))
+    print('tower distance:' + str(t))
     avgFitnesses.append(children.get_avg_fitness())
     parents = children
 
@@ -64,13 +64,13 @@ for g in range(1,c.totGens):
 best = copy.deepcopy(parents.p[0])
 
 #save parent to file
-f=open('0-1K-50-1250best.p','wb')#0 pretrain, 6K on max dist, 100 pop best creature
+f=open('500-1K-50-1250best.p','wb')#0 pretrain, 6K on max dist, 100 pop best creature
 pickle.dump(parents.p[0], f)
 f.close()
 
 
 #save avg fitness of every gen to file
-f=open('0-1K-50-1250fitness.p','wb')#0 pretrain, 6K on max dist, 100 pop
+f=open('500-1K-50-1250fitness.p','wb')#0 pretrain, 6K on max dist, 100 pop
 pickle.dump(avgFitnesses, f)
 f.close()
 
