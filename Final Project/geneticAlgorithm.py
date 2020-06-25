@@ -64,13 +64,13 @@ for g in range(1,c.totGens):
 best = copy.deepcopy(parents.p[0])
 
 #save parent to file
-f=open('1k-2K-50best.p','wb')#0 pretrain, 6K on max dist, 100 pop best creature
+f=open('0-1K-50-1250best.p','wb')#0 pretrain, 6K on max dist, 100 pop best creature
 pickle.dump(parents.p[0], f)
 f.close()
 
 
 #save avg fitness of every gen to file
-f=open('1k-2K-50fitness.p','wb')#0 pretrain, 6K on max dist, 100 pop
+f=open('0-1K-50-1250fitness.p','wb')#0 pretrain, 6K on max dist, 100 pop
 pickle.dump(avgFitnesses, f)
 f.close()
 
