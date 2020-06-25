@@ -4,6 +4,8 @@ import random
 import pickle
 import copy
 
+import os
+
 import constants as c
 from robot import ROBOT
 from individual import INDIVIDUAL
@@ -14,7 +16,14 @@ from multiprocessing import Lock
 Load = False
 popSize = 50
 
+## pretrain-total-popsize-eval_time
+saveFile = str(c.gens) + '-' + str(c.totGens) + '-' + str(popSize) + '-' + str(c.eval_time)
+#saveFile = '5-10-50-1600'
+folder = saveFile
+
+
 avgFitnesses = []
+tValues = []
 
 t = c.Min_dist
 
@@ -57,21 +66,30 @@ for g in range(1,c.totGens):
     children.Print()
     print('tower distance:' + str(t))
     avgFitnesses.append(children.get_avg_fitness())
+    tValues.append(t)
     parents = children
 
     #scount+=1
 
 best = copy.deepcopy(parents.p[0])
 
+
+if not(os.path.isdir(folder)):
+    os.makedirs(folder)
+
 #save parent to file
-f=open('500-1K-50-1250best.p','wb')#0 pretrain, 6K on max dist, 100 pop best creature
+f=open(folder + '/' + saveFile + 'best.p','wb')#0 pretrain, 6K on max dist, 100 pop best creature
 pickle.dump(parents.p[0], f)
 f.close()
 
 
 #save avg fitness of every gen to file
-f=open('500-1K-50-1250fitness.p','wb')#0 pretrain, 6K on max dist, 100 pop
+f=open(folder + '/' + saveFile + 'fitness.p','wb')#0 pretrain, 6K on max dist, 100 pop
 pickle.dump(avgFitnesses, f)
+f.close()
+
+f = open(folder + '/' + saveFile + 't.p', 'wb')
+pickle.dump(tValues, f)
 f.close()
 
 #play best creature
