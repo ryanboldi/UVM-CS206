@@ -12,7 +12,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 10
+popSize = 50
 
 avgFitnesses = []
 
