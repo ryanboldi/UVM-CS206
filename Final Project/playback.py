@@ -2,7 +2,9 @@ from individual import INDIVIDUAL
 import pickle
 import constants as c
 
-f = open('500-1k-50-1250/500-1K-50-1250best.p','rb')
+experiment = '0-1000-5-1500'
+
+f = open(experiment + '/' + experiment + 'best.p','rb')
 best = pickle.load(f)
 f.close()
 
