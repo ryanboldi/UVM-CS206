@@ -2,7 +2,7 @@ import matplotlib.pyplot as plt
 import pickle
 import constants as c
 
-experiment = '0-6000-15-1500'
+experiment = '0-600-100-1500'
 
 f = open(experiment + '/' + experiment + 'fitness.p','rb')
 fitness = pickle.load(f)
