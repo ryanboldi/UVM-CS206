@@ -10,4 +10,4 @@ gens = 500 # how many gens of pretraining do we do
 totGens = 1000 # total gens of evolution
 #inc_time = 1 # gens per incremement
 gen_incremement = 0.015 # how much we incrememnt each inc_time gens
-eval_time = 1250
+eval_time = 1600
