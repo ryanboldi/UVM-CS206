@@ -1,8 +1,9 @@
 \documentclass[12pt, a4paper]{article}
+\usepackage[margin=1.3in]{geometry}
 \usepackage{tikz}
 \usepackage{graphics}
 \usepackage{amsmath}
-
+\usepackage{subfig}
 
 % Title Page
 \title{Evolving Tower-Destroying Robots\\\normalsize An Exploration into Scaffolded Learning}
@@ -43,11 +44,12 @@ My goal was to experiment with this process, seeing whether or not it actually i
 \paragraph{Robot}
 I started by creating the robot. It was based on a simple quadruped, but with 2 added arms to make destroying the tower easier. All of the limb relative sizes can be controlled and fined tuned in \emph{constants.py}.\par
 \begin{figure}[h]
-\includegraphics{robot.png}
-\caption{The \emph{Tower-Destroyer} Robot. It has 6 sensors: one on the tip of each limb. It may move its legs and arms freely, each with 2 degrees of freedom. Each motor is controlled by the output layer of a fully connected neural network, which takes the sensor data as inputs. }
+	\centering
+	\includegraphics{robot.png}
+	\caption{The \emph{Tower-Destroyer} Robot. It has 6 sensors: one on the tip of each limb. It may move its legs and arms freely, each with 2 degrees of freedom. Each motor is controlled by the output layer of a fully connected neural network, which takes the sensor data as inputs. }
 \end{figure}
 \paragraph{Tower}
-The Tower is created out of 3 similar cuboids, with the third balanced on top of the bottom two (see figure~\ref{goal}). The block colored in red is to be my `fall detector'. If this block comes into contact with the ground, we will count this tower as ``Fallen". If the tower has fallen over, the creature will receive a large fitness reward.
+The Tower is created out of 3 similar cuboids, with the third balanced on top of the bottom two (see figure~\ref{goal}). The block colored in red is to be my `fall detector'. If this block comes into contact with the ground, we will count this tower as ``Fallen". If the tower has fallen over, the robot will receive a large fitness reward.
 \paragraph{Fitness} To ensure that the reinforcement is not too sparse, I wanted to include an incentive to move towards the tower. After much deliberation, this is the fitness function I have included:
 $$
 \text{Fitness} = \begin{cases}
@@ -58,15 +60,32 @@ $$
 
 \noindent I believed that this would promote movement in the positive $y$ direction before the tower is in the robot's reach.
 
-\paragraph{Scaffolding} To control whether or not we are going to scaffold the robot's learning, I added a new constant to the program that controls how many generations of \emph{pretraining} will occur. During pretraining, the tower's distance starts at low value, and incrementally gets larger as the robot performs better. When these pretraining generations are completed, the tower's distance will be set to the maximum (goal) distance, and the evolution continues until all of the total generations have completed. If pretraining is set to 300, and total generations is set to 600, we will pretrain the population for 300 generations, slowly incremementing the tower's distance whenever a robot successfully knocks over a tower. At 300 generations, no matter the current distance of the tower, we move it to it's maximum distance for the final 300 generations. If pretraining is set to 0, and total generations is set to 600, we will start the tower at its maximum distance, and train the population on that for 600 generation without moving the tower.
+\paragraph{Scaffolding} To control whether or not we are going to scaffold the robot's learning, I added a new constant to the program that controls how many generations of \emph{pretraining} will occur. During pretraining, the tower's distance starts at low value, and incrementally gets larger as the robot performs better. When these pretraining generations are completed, the tower's distance will be set to the maximum (goal) distance, and the evolution continues until all of the total generations have completed. If pretraining is set to 300, and total generations is set to 600, we will pretrain the population for 300 generations, slowly incrementing the tower's distance whenever a robot successfully knocks over the tower. At 300 generations, no matter the current distance of the tower, we move it to it's maximum distance for the final 300 generations. If pretraining is set to 0, and total generations is set to 600, we will start the tower at its maximum distance, and train the population on that for 600 generation without moving the tower.
 \newpage
 \section{Results}
-My results were extremely interesting and unforseen.
+I expected that the robots that were pretrained in the simpler environment would do better than robots that were solely trained on the difficult environment. If this was the case, we would see the robots that have been pretrained for half of the total evolutionary time do better in that second half where they are in the difficult environment. This provides us with a fair means of comparison between the two evolutionary methods. 
+\begin{figure}[h]
+	\centering
+	\title{No Pretrain, 600 Total}
+	\includegraphics[width=1\textwidth]{0-600-100-1500/0-600-100-1500.png}
+	\caption{Result after 100 robots were evaluated for 1500 timesteps per generation, over the course of 600 generations, 0 of which are pretraining. Because there was no pretraining, the tower stays at a constant distance away from the robot over the entire course of evolution. The fitness of the robots is their distance from the origin in the $y$ direction, so the point where the blue and orange lines meet effectively represents when the robots reach the tower. Past this, the only way to get fitness is to destroy the tower, which is how the fitness continues to increase.}
+	\label{nopretrain}
+\end{figure}
+
+Figure~\ref{nopretrain} proves that evolution did in fact take place. We can see that the evolved creatures do much better than the randomly evolved creatures in generation 0.
+
+
+%discuss that this was what i expected, eventually, due to the fact that i give them inentive to move forward, the robots will learn to walk towards the tower, and one of them will eventually break down the tower.
+%in the future, i could maybe vary where the tower is, so that the creatures that train on the closer towers have an easier time when it gets further away
+
+
 \begin{figure}[h]
 \centering
-\includegraphics{0-600-100-1500/0-600-100-1500.png}
-\caption{Result after 0 generations of pretraining, 600 generations total, 100 creatures, and each creature was evaluated for 1500 timesteps.}
+\includegraphics[width=1\textwidth]{300-600-100-1500/300-600-100-1500.png}
+\caption{Result after 100 robots were evaluated for 1500 timesteps per generation, over the course of 600 generations of evolution, 300 of which are pretraining. The tower incremementally moves farther away for the first 300 generations, then stays at maximum for the rest of evolution. We can see that the robots are able to destroy the tower at the beginning, but as the tower gets farther away they are less able to do so. We can see that after 300 generations, none of the robots are able to knock over the tower as it is at its maximum offset of 4. There is a large spike of fitness at the beginning due to how easy it is to destroy the tower (just fall forward). Only in one of the last generations was a robot able to knock over the tower (because the blue line is above the orange line, therefore the average fitness is larger than the distance to the tower).}
+
 \end{figure}
+
 \section{Reflection}
 
 \end{document}          
