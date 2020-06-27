@@ -19,7 +19,7 @@ We do not teach linear algebra to 6 year olds due to the fact that they do not h
 The robot's task is to destroy a tower that starts a specific distance away from it:\par
 \vspace{-10pt}
 \begin{figure}[h]
-	\label{goal}
+	
 \begin{center}
 	\centering
 \begin{tikzpicture}
@@ -33,6 +33,7 @@ The robot's task is to destroy a tower that starts a specific distance away from
 \node[] at (6.25,4) {Tower};
 \end{tikzpicture}
 \caption{Diagram demonstrating the robot's task.}
+\label{goal}
 \end{center}
 \end{figure}
 \vspace{-10pt}
@@ -84,6 +85,33 @@ Figure~\ref{nopretrain} proves that evolution did in fact take place. We can see
 \includegraphics[width=1\textwidth]{300-600-100-1500/300-600-100-1500.png}
 \caption{Result after 100 robots were evaluated for 1500 timesteps per generation, over the course of 600 generations of evolution, 300 of which are pretraining. The tower incremementally moves farther away for the first 300 generations, then stays at maximum for the rest of evolution. We can see that the robots are able to destroy the tower at the beginning, but as the tower gets farther away they are less able to do so. We can see that after 300 generations, none of the robots are able to knock over the tower as it is at its maximum offset of 4. There is a large spike of fitness at the beginning due to how easy it is to destroy the tower (just fall forward). Only in one of the last generations was a robot able to knock over the tower (because the blue line is above the orange line, therefore the average fitness is larger than the distance to the tower).}
 
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{0-1000-5-1500/0-1000-5-1500.png}
+	\caption{Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 0 of which are pretraining.}
+	
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{500-1000-5-1500/500-1000-5-1500.png}
+	\caption{Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 500 of which are pretraining.}
+	
+\end{figure}
+
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{0-6000-15-1500/0-6000-15-1500.png}
+	\caption{Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 500 of which are pretraining.}
+	
+\end{figure}
+\begin{figure}[h]
+	\centering
+	\includegraphics[width=1\textwidth]{3000-6000-15-1500/3000-6000-15-1500.png}
+	\caption{Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 500 of which are pretraining.}
+	
 \end{figure}
 
 \section{Reflection}
