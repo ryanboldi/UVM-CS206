@@ -16,7 +16,7 @@ g.close()
 
 print(fitness)
 
-rc('font',**{'family':'san-serif','sans-serif':['Helvetica']})
+rc('font',**{'family':'DejaVu Sans','sans-serif':['Helvetica']})
 rc('text',usetex=True)
 
 f = plt.figure() #adds a figure
