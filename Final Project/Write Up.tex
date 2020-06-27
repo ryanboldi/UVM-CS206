@@ -75,6 +75,7 @@ I expected that the robots that were pretrained in the simpler environment would
 
 Figure~\ref{nopretrain} proves that evolution did in fact take place. We can see that the evolved creatures do much better than the randomly evolved creatures in generation 0.
 
+Next, I repeated evolution, but set pretrain to 300. This means that half of evolution will take place in the pretrain phase, where the tower gets incrementally farther away, until generation 300, where the tower is set to its maximum distance.
 
 %discuss that this was what i expected, eventually, due to the fact that i give them inentive to move forward, the robots will learn to walk towards the tower, and one of them will eventually break down the tower.
 %in the future, i could maybe vary where the tower is, so that the creatures that train on the closer towers have an easier time when it gets further away
@@ -83,23 +84,26 @@ Figure~\ref{nopretrain} proves that evolution did in fact take place. We can see
 \begin{figure}[h]
 \centering
 \includegraphics[width=1\textwidth]{300-600-100-1500/300-600-100-1500.png}
-\caption{Result after 100 robots were evaluated for 1500 timesteps per generation, over the course of 600 generations of evolution, 300 of which are pretraining. The tower incremementally moves farther away for the first 300 generations, then stays at maximum for the rest of evolution. We can see that the robots are able to destroy the tower at the beginning, but as the tower gets farther away they are less able to do so. We can see that after 300 generations, none of the robots are able to knock over the tower as it is at its maximum offset of 4. There is a large spike of fitness at the beginning due to how easy it is to destroy the tower (just fall forward). Only in one of the last generations was a robot able to knock over the tower (because the blue line is above the orange line, therefore the average fitness is larger than the distance to the tower).}
-
+\caption{Result after 100 robots were evaluated for 1500 timesteps per generation, over the course of 600 generations of evolution, 300 of which are pretraining. We can see that the robots are able to destroy the tower at the beginning, but as the tower gets farther away they are less able to do so. We can see that after 300 generations, none of the robots are able to knock over the tower as it is at its maximum offset of 4. There is a large spike of fitness at the beginning due to how easy it is to destroy the tower (just falling forward). Only in one of the last generations was a robot able to knock over the tower (because the blue line is above the orange line, therefore the average fitness is larger than the distance to the tower).}
 \end{figure}
-
+\newpage
 \begin{figure}[h]
 	\centering
-	\includegraphics[width=1\textwidth]{0-1000-5-1500/0-1000-5-1500.png}
+	\includegraphics[width=\textwidth]{0-1000-5-1500/0-1000-5-1500.png}
 	\caption{Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 0 of which are pretraining.}
-	
+	\label{0-1000-5}
 \end{figure}
 
 \begin{figure}[h]
 	\centering
 	\includegraphics[width=1\textwidth]{500-1000-5-1500/500-1000-5-1500.png}
 	\caption{Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 500 of which are pretraining.}
-	
+	\label{500-1000-5}
 \end{figure}
+
+After repeating the experiment with less creatures and more generations, we see results that are consistent with the earlier run. Figures~\ref{0-1000-5} and~\ref{500-1000-5} show that pretraining is adversely affecting evolution. We can tell that this is the case because the evolutionary run without pretraining yields a solution that can destroy the tower at its maximum distance of 4. Yet, with pretraining, the robots do not destroy the tower at all when it is at its maximum distance. As shown in figure~\ref{0-1000-5}, it took around 700 generations for a robot controller to be discovered that can destroy the tower. But, with pretraining, no robot comes close to destroying the tower for portion of evolution where the tower is at 4 units away.
+
+To ensure that these results were not just coincidences, I ran evolution one more time, and gave the pretraining many more generations to help smoothen the transition from pretrianing to regular evolution.
 
 \begin{figure}[h]
 	\centering
