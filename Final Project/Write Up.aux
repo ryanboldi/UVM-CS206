@@ -8,15 +8,29 @@
 \@writefile{lof}{\contentsline {figure}{\numberline {2}{\ignorespaces The \emph  {Tower-Destroyer} Robot. It has 6 sensors: one on the tip of each limb. It may move its legs and arms freely, each with 2 degrees of freedom. Each motor is controlled by the output layer of a fully connected neural network, which takes the sensor data as inputs. \relax }}{3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Tower}{3}\protected@file@percent }
 \@writefile{toc}{\contentsline {paragraph}{Fitness}{3}\protected@file@percent }
-\@writefile{toc}{\contentsline {paragraph}{Scaffolding}{4}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Scaffolding}{3}\protected@file@percent }
 \@writefile{toc}{\contentsline {section}{\numberline {3}Results}{5}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Result after 100 robots were evaluated for 1500 timesteps per generation, over the course of 600 generations, 0 of which are pretraining. Because there was no pretraining, the tower stays at a constant distance away from the robot over the entire course of evolution. The fitness of the robots is their distance from the origin in the $y$ direction, so the point where the blue and orange lines meet effectively represents when the robots reach the tower. Past this, the only way to get fitness is to destroy the tower, which is how the fitness continues to increase.\relax }}{5}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {3}{\ignorespaces Result after 100 robots were evaluated for 1500 timesteps per generation over the course of 600 generations, 0 of which are pretraining. Because there was no pretraining, the tower stays at a constant distance away from the robot over the entire course of evolution. The fitness of the robots is their distance from the origin in the $y$ direction, so the point where the blue and orange lines meet effectively represents when the robots reach the tower. Past this, the only way to get fitness is to destroy the tower, which is how the fitness continues to increase.\relax }}{5}\protected@file@percent }
 \newlabel{nopretrain}{{3}{5}}
-\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Result after 100 robots were evaluated for 1500 timesteps per generation, over the course of 600 generations of evolution, 300 of which are pretraining. We can see that the robots are able to destroy the tower at the beginning, but as the tower gets farther away they are less able to do so. We can see that after 300 generations, none of the robots are able to knock over the tower as it is at its maximum offset of 4. There is a large spike of fitness at the beginning due to how easy it is to destroy the tower (just falling forward). Only in one of the last generations was a robot able to knock over the tower (because the blue line is above the orange line, therefore the average fitness is larger than the distance to the tower).\relax }}{6}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 0 of which are pretraining.\relax }}{7}\protected@file@percent }
-\newlabel{0-1000-5}{{5}{7}}
-\@writefile{toc}{\contentsline {section}{\numberline {4}Reflection}{7}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 500 of which are pretraining.\relax }}{8}\protected@file@percent }
-\newlabel{500-1000-5}{{6}{8}}
-\@writefile{lof}{\contentsline {figure}{\numberline {7}{\ignorespaces Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 500 of which are pretraining.\relax }}{9}\protected@file@percent }
-\@writefile{lof}{\contentsline {figure}{\numberline {8}{\ignorespaces Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution, 500 of which are pretraining.\relax }}{10}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {4}{\ignorespaces Result after 100 robots were evaluated for 1500 timesteps per generation over the course of 600 generations of evolution, 300 of which are pretraining. We can see that the robots are able to destroy the tower at the beginning, but as the tower gets farther away they are less able to do so. We can see that after 300 generations, none of the robots are able to knock over the tower as it is at its maximum offset of 4. There is a large spike of fitness at the beginning due to how easy it is to destroy the tower (just falling forward). Only in one of the last generations was a robot able to knock over the tower (because the blue line is above the orange line, therefore the average fitness is larger than the distance to the tower).\relax }}{6}\protected@file@percent }
+\newlabel{0-1000-5}{{5a}{7}}
+\newlabel{sub@0-1000-5}{{(a)}{a}}
+\newlabel{500-1000-5}{{5b}{7}}
+\newlabel{sub@500-1000-5}{{(b)}{b}}
+\@writefile{lof}{\contentsline {figure}{\numberline {5}{\ignorespaces Result after 5 robots were evaluated for 1500 timesteps per generation, over the course of 1000 generations of evolution. Once again, the evolutionary run without pretraining managed to find a solution. We can see that the first robot destroys a tower at around generation 700 (for a population of 5 creatures, this is normal). Figure\nobreakspace  {}5b\hbox {} shows this same experiment \emph  {with} pretraining.\relax }}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {0 Pretrain, 1000 Total}}}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {500 Pretrain, 1000 Total}}}{7}\protected@file@percent }
+\@writefile{lof}{\contentsline {figure}{\numberline {6}{\ignorespaces Once again, the robots that were trained without any pretrain performed, on average, much better than the creatures that did pretrain. This futher proves that pretraining is adversely affecting the time it takes to come to a solution.\relax }}{8}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(a)}{\ignorespaces {0 Pretrain, 6000 Total}}}{8}\protected@file@percent }
+\@writefile{lof}{\contentsline {subfigure}{\numberline{(b)}{\ignorespaces {3000 Pretrain, 6000 Total}}}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {section}{\numberline {4}Reflection}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Overfitting}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Luck}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.1}Implementation Comments}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Difficulties}{8}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Pyrosim}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {subsection}{\numberline {4.2}Future Work}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Queued experiments}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Fitness Functions}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Tower Movement}{9}\protected@file@percent }
+\@writefile{toc}{\contentsline {paragraph}{Task}{9}\protected@file@percent }

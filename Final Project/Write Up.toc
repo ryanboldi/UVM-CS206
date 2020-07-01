@@ -3,6 +3,16 @@
 \contentsline {paragraph}{Robot}{3}%
 \contentsline {paragraph}{Tower}{3}%
 \contentsline {paragraph}{Fitness}{3}%
-\contentsline {paragraph}{Scaffolding}{4}%
+\contentsline {paragraph}{Scaffolding}{3}%
 \contentsline {section}{\numberline {3}Results}{5}%
-\contentsline {section}{\numberline {4}Reflection}{7}%
+\contentsline {section}{\numberline {4}Reflection}{8}%
+\contentsline {paragraph}{Overfitting}{8}%
+\contentsline {paragraph}{Luck}{8}%
+\contentsline {subsection}{\numberline {4.1}Implementation Comments}{8}%
+\contentsline {paragraph}{Difficulties}{8}%
+\contentsline {paragraph}{Pyrosim}{9}%
+\contentsline {subsection}{\numberline {4.2}Future Work}{9}%
+\contentsline {paragraph}{Queued experiments}{9}%
+\contentsline {paragraph}{Fitness Functions}{9}%
+\contentsline {paragraph}{Tower Movement}{9}%
+\contentsline {paragraph}{Task}{9}%
