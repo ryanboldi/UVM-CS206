@@ -14,7 +14,7 @@ from population import POPULATION
 from multiprocessing import Lock
 
 Load = False
-popSize = 500
+popSize = 1
 
 ## pretrain-total-popsize-eval_time
 saveFile = str(c.gens) + '-' + str(c.totGens) + '-' + str(popSize) + '-' + str(c.eval_time)
